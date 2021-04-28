@@ -56,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         btnGoogleLogin.setSize(SignInButton.SIZE_STANDARD);
 
         mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
 
         // Checks to see if the user is already logged in
         final Handler handler = new Handler();

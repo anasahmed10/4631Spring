@@ -1,6 +1,7 @@
 // Created DatePickerFragment to prompt the user to pick a date, makes entering the date easier
 package com.example.yardscapelistingprototype.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
@@ -38,10 +39,11 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        this.year = year;
-        this.month = month;
+    public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth) {
+        this.year = year1;
+        this.month = month1 + 1;
         this.day = dayOfMonth;
 
         dateEditText.setText(String.format("%d/%d/%d", month, dayOfMonth, year));

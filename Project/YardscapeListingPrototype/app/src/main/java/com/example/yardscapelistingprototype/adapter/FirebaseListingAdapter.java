@@ -41,9 +41,9 @@ public class FirebaseListingAdapter extends FirebaseRecyclerAdapter<Listing, Fir
 
         // Sets Textviews to proper Listing values
         holder.itemTitle.setText(model.getListing_title());
-        holder.itemDesc.setText(model.getListing_description());
-        holder.itemDate.setText(model.getListing_date());
-        holder.itemTime.setText(model.getListing_time());
+        holder.itemDesc.setText("Description: " + model.getListing_description());
+        holder.itemDate.setText("Date: " + model.getListing_date());
+        holder.itemTime.setText("Time: " + model.getListing_time());
         storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {

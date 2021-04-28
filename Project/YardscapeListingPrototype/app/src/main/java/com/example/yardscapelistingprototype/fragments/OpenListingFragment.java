@@ -98,9 +98,9 @@ public class OpenListingFragment extends Fragment {
 
         // Sets Textview values according to listing
         listing_title.setText(sourceListing.getListing_title());
-        listing_day.setText(sourceListing.getListing_date());
-        listing_time.setText(sourceListing.getListing_time());
-        listing_desc.setText(sourceListing.getListing_description());
+        listing_day.setText("Listing Date: " + sourceListing.getListing_date());
+        listing_time.setText("Listing Time: " + sourceListing.getListing_time());
+        listing_desc.setText("Listing Description: " + sourceListing.getListing_description());
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(sourceListing.getListing_image_path());
         storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

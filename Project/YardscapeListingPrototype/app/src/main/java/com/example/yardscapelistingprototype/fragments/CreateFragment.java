@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -294,7 +295,12 @@ public class CreateFragment extends Fragment {
                             // Image uploaded successfully
                             // Dismiss dialog
                             progressDialog.dismiss();
-                            inputListing.setListing_image_path("images/" + imageName);
+                            ref.getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+                                @Override
+                                public void onSuccess(StorageMetadata storageMetadata) {
+                                    inputListing.setListing_image_path("images/" + storageMetadata.getName());
+                                }
+                            });
                             Toast.makeText(getActivity(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
                             }
                     }).addOnFailureListener(new OnFailureListener() {
